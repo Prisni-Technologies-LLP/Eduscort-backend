@@ -18,6 +18,7 @@ public class Student {
 	private Long student_id;
 	private String first_name;
 	private Integer roll_no;
+	private String is_active;
     /**
 	 * @return the roll_no
 	 */
@@ -130,5 +131,18 @@ public class Student {
 	public void setclass_name(String class_name) {
 		this.class_name = class_name;
 	}
+	/**
+	 * @return the is_active
+	 */
+	public String getIs_active() {
+		return is_active;
+	}
+	/**
+	 * @param is_active the is_active to set
+	 */
+	public void setIs_active(String is_active) {
+		this.is_active = is_active;
+	}
+	
 	
 }

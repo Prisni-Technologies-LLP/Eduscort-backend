@@ -1,6 +1,7 @@
 package com.example.core.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +29,7 @@ public class StudentController {
 	
 	@GetMapping("/students/")
 	public List<Student> getAllStudents(){
-		return studentRepository.findAll();
+		return studentRepository.findAllActiveStudents();
 	}
 	@GetMapping("/students/{student_id}")  
     public Student getStudentByID(@PathVariable("student_id") Long student_id) { 
@@ -51,9 +52,9 @@ public class StudentController {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@DeleteMapping("delete-student/{student_id}")
+	@PutMapping("delete-student/{student_id}")
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long student_id){
-		studentRepository.deleteById(student_id);
+		studentRepository.deactivateById(student_id);
 		return ResponseEntity.noContent().build();
 	}
 	
@@ -68,6 +69,12 @@ public class StudentController {
 		Set<String> classes=new HashSet<String>();
 		classes=studentRepository.getClasses();
 		return classes;
+	}
+	@GetMapping("get-students-by-class/{class_name}")
+	public List<Student> getStudentsByClass(@PathVariable String class_name){
+		List<Student> students=new ArrayList<Student>();
+		students=studentRepository.findStudentsByClass(class_name);
+		return students;
 	}
 
 }
