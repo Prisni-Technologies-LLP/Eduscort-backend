@@ -1,5 +1,8 @@
 package com.example.core.repos;
-
+/**
+ * Copyright Prisni Technologies LLP.
+ * Author: Debabrata Mukherjee
+ */
 import java.util.List;
 import java.util.Set;
 
@@ -23,6 +26,9 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	
 	@Query(value="SELECT * FROM STUDENT s WHERE s.IS_ACTIVE='Y'", nativeQuery=true)
 	public List<Student> findAllActiveStudents();
+	
+	@Query(value="SELECT * FROM STUDENT s WHERE s.IS_ACTIVE='N'", nativeQuery=true)
+	public List<Student> findAllDeactivatedStudents();
 	
 	@Query(value="SELECT * FROM STUDENT s WHERE s.class_name=?1 and s.IS_ACTIVE='Y'", nativeQuery=true)
 	public List<Student> findStudentsByClass(String class_name);

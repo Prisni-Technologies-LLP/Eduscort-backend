@@ -1,3 +1,7 @@
+/**
+ * copyright Prisni Technologies LLP.
+ * Author: Debabrata Mukherjee
+ */
 package com.example.core.controller;
 
 import java.net.URI;
@@ -31,6 +35,10 @@ public class StudentController {
 	public List<Student> getAllStudents(){
 		return studentRepository.findAllActiveStudents();
 	}
+	@GetMapping("/students/deactivated")
+	public List<Student> getAllDeactivatedStudents(){
+		return studentRepository.findAllDeactivatedStudents();
+	}	
 	@GetMapping("/students/{student_id}")  
     public Student getStudentByID(@PathVariable("student_id") Long student_id) { 
            
