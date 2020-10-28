@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import com.example.core.demo.Student;
 import com.example.core.repos.StudentRepository;
 
@@ -45,6 +45,10 @@ public class StudentController {
          return studentRepository.findById(student_id).get();  
           
     }
+	@GetMapping("/studentsByFirstName/{first_name}")
+	public List<Student> getStudentsByFirstName(@PathVariable("first_name") String first_name){
+		return studentRepository.findAllStudentsByFirstName(first_name);
+	}
 	@PostMapping("/students/")
 	public ResponseEntity<Void> createStudent(
 			@RequestBody Student student){		

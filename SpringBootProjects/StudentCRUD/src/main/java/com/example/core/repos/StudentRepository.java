@@ -30,6 +30,9 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	@Query(value="SELECT * FROM STUDENT s WHERE s.IS_ACTIVE='N'", nativeQuery=true)
 	public List<Student> findAllDeactivatedStudents();
 	
+	@Query(value="SELECT * FROM STUDENT s WHERE s.FIRST_NAME=?1 AND s.IS_ACTIVE='Y'", nativeQuery=true)
+	public List<Student> findAllStudentsByFirstName(String first_name);
+	
 	@Query(value="SELECT * FROM STUDENT s WHERE s.class_name=?1 and s.IS_ACTIVE='Y'", nativeQuery=true)
 	public List<Student> findStudentsByClass(String class_name);
 
