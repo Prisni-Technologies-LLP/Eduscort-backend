@@ -88,5 +88,10 @@ public class StudentController {
 		students=studentRepository.findStudentsByClass(class_name);
 		return students;
 	}
+	@PutMapping("activate-student/{student_id}")
+	public ResponseEntity<Void> activateStudent(@PathVariable Long student_id){
+		studentRepository.activateById(student_id);
+		return ResponseEntity.noContent().build();
+	}
 
 }

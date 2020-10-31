@@ -24,6 +24,11 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	@Query(value="UPDATE student s SET s.IS_ACTIVE='N' WHERE s.student_id=?1", nativeQuery=true)
 	public void deactivateById(Long student_id);
 	
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE student s SET s.IS_ACTIVE='Y' WHERE s.student_id=?1", nativeQuery=true)
+	public void activateById(Long student_id);
+	
 	@Query(value="SELECT * FROM STUDENT s WHERE s.IS_ACTIVE='Y'", nativeQuery=true)
 	public List<Student> findAllActiveStudents();
 	
